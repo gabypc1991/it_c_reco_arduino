@@ -114,21 +114,25 @@ void setup() {
 }
 
 void GOT_int0(){
+  Serial.println("CAN0_IN");
   while(CAN_MSGAVAIL == CAN_0.checkReceive()){
         CAN_0.readMsgBuf(&len, frame);
         canId = CAN_0.getCanId();
     }
   //got_frame();
-  CAN_1.sendMsgBuf(canId, 0, 8, frame);  
+  CAN_1.sendMsgBuf(canId, 0, 8, frame);
+  Serial.println("CAN1_OUT");  
   }
 
 void GOT_int1(){
+  Serial.println("CAN1_IN");
   while(CAN_MSGAVAIL == CAN_1.checkReceive()){
         CAN_1.readMsgBuf(&len, frame);
         canId = CAN_1.getCanId();
     }
   //got_frame();
-  CAN_0.sendMsgBuf(canId, 0, 8, frame);  
+  CAN_0.sendMsgBuf(canId, 0, 8, frame);
+  Serial.println("CAN0_OUT");  
   }
 
 void can0_got() {  
